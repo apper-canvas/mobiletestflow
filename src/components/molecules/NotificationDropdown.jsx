@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ApperIcon from '@/components/ApperIcon'
 import { getNotifications, markNotificationAsRead } from '@/services/api/notificationService'
 import { formatDistanceToNow } from 'date-fns'
@@ -8,10 +9,10 @@ import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
 
 const NotificationDropdown = ({ onClose }) => {
+  const navigate = useNavigate()
   const [notifications, setNotifications] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-
   const loadNotifications = async () => {
     try {
       setLoading(true)
@@ -29,7 +30,47 @@ const NotificationDropdown = ({ onClose }) => {
     loadNotifications()
   }, [])
 
-  const handleMarkAsRead = async (id) => {
+const handleNotificationClick = async (notification) => {
+    try {
+      // Mark as read if not already
+      if (!notification.read) {
+        await markNotificationAsRead(notification.Id)
+        setNotifications(prev => 
+          prev.map(notif => 
+            notif.Id === notification.Id ? { ...notif, read: true } : notif
+          )
+        )
+      }
+
+      // Navigate based on notification type
+      switch (notification.type) {
+        case 'bug_assigned':
+          navigate(`/bugs/${notification.entityId}`)
+          break
+        case 'test_case_updated':
+          navigate(`/test-cases/${notification.entityId}`)
+          break
+        case 'project_created':
+          navigate(`/projects/${notification.entityId}`)
+          break
+        case 'comment_added':
+          // For comments, navigate to the entity they're attached to
+          // This could be enhanced to detect entity type from entityId
+          navigate(`/bugs/${notification.entityId}`)
+          break
+        default:
+          toast.info('Navigation not available for this notification type')
+          return
+      }
+
+      onClose()
+    } catch (err) {
+      toast.error('Failed to process notification')
+    }
+  }
+
+  const handleMarkAsRead = async (id, event) => {
+    event.stopPropagation() // Prevent triggering notification click
     try {
       await markNotificationAsRead(id)
       setNotifications(prev => 
@@ -93,12 +134,13 @@ const NotificationDropdown = ({ onClose }) => {
           </div>
         ) : (
           <div className="py-2">
-            {notifications.map((notification) => (
+{notifications.map((notification) => (
               <motion.div
                 key={notification.Id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className={`flex items-start space-x-3 p-4 hover:bg-gray-50 transition-colors ${
+                onClick={() => handleNotificationClick(notification)}
+                className={`flex items-start space-x-3 p-4 hover:bg-gray-50 transition-colors cursor-pointer ${
                   !notification.read ? 'bg-blue-50 border-l-4 border-primary-500' : ''
                 }`}
               >
@@ -123,7 +165,7 @@ const NotificationDropdown = ({ onClose }) => {
 
                 {!notification.read && (
                   <button
-                    onClick={() => handleMarkAsRead(notification.Id)}
+                    onClick={(e) => handleMarkAsRead(notification.Id, e)}
                     className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
                   >
                     <ApperIcon name="Check" size={14} />
