@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 1,
+    "name": "E-commerce Platform",
+    "description": "Complete e-commerce solution with payment integration, user management, and order processing",
+    "status": "active",
+    "createdAt": "2024-01-15T08:30:00Z",
+    "updatedAt": "2024-01-20T14:22:00Z",
+    "completionPercentage": 75,
+    "modules": [
+      {
+        "Id": 1,
+        "name": "User Authentication",
+        "description": "Login, signup, password reset functionality"
+      },
+      {
+        "Id": 2,
+        "name": "Product Catalog",
+        "description": "Product listing, search, and filtering"
+      },
+      {
+        "Id": 3,
+        "name": "Shopping Cart",
+        "description": "Add to cart, update quantities, checkout"
+      }
+    ],
+    "testCases": [],
+    "bugs": []
+  },
+  {
+    "Id": 2,
+    "name": "Mobile Banking App",
+    "description": "Secure mobile banking application with account management and transaction features",
+    "status": "active",
+    "createdAt": "2024-01-10T10:15:00Z",
+    "updatedAt": "2024-01-18T16:45:00Z",
+    "completionPercentage": 60,
+    "modules": [
+      {
+        "Id": 4,
+        "name": "Account Management",
+        "description": "View balances, account details, statements"
+      },
+      {
+        "Id": 5,
+        "name": "Money Transfer",
+        "description": "Internal and external transfers"
+      }
+    ],
+    "testCases": [],
+    "bugs": []
+  },
+  {
+    "Id": 3,
+    "name": "CRM System",
+    "description": "Customer relationship management system for sales teams",
+    "status": "planning",
+    "createdAt": "2024-01-05T09:00:00Z",
+    "updatedAt": "2024-01-12T11:30:00Z",
+    "completionPercentage": 25,
+    "modules": [
+      {
+        "Id": 6,
+        "name": "Contact Management",
+        "description": "Customer contact information and history"
+      },
+      {
+        "Id": 7,
+        "name": "Sales Pipeline",
+        "description": "Lead tracking and opportunity management"
+      }
+    ],
+    "testCases": [],
+    "bugs": []
+  },
+  {
+    "Id": 4,
+    "name": "Healthcare Portal",
+    "description": "Patient portal for appointment scheduling and medical records",
+    "status": "active",
+    "createdAt": "2024-01-08T12:00:00Z",
+    "updatedAt": "2024-01-19T09:15:00Z",
+    "completionPercentage": 85,
+    "modules": [
+      {
+        "Id": 8,
+        "name": "Appointment Booking",
+        "description": "Schedule and manage medical appointments"
+      },
+      {
+        "Id": 9,
+        "name": "Medical Records",
+        "description": "View test results and medical history"
+      }
+    ],
+    "testCases": [],
+    "bugs": []
+  },
+  {
+    "Id": 5,
+    "name": "Inventory Management",
+    "description": "Warehouse inventory tracking and management system",
+    "status": "completed",
+    "createdAt": "2023-12-15T14:30:00Z",
+    "updatedAt": "2024-01-10T13:45:00Z",
+    "completionPercentage": 100,
+    "modules": [
+      {
+        "Id": 10,
+        "name": "Stock Tracking",
+        "description": "Real-time inventory levels and alerts"
+      },
+      {
+        "Id": 11,
+        "name": "Order Management",
+        "description": "Purchase orders and supplier management"
+      }
+    ],
+    "testCases": [],
+    "bugs": []
+  }
+]

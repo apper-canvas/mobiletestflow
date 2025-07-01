@@ -1,0 +1,66 @@
+[
+  {
+    "Id": 1,
+    "entityId": "1",
+    "entityType": "bug",
+    "content": "I've started investigating this issue. It seems to be related to the validation library not properly triggering the error display.",
+    "userId": "john-doe",
+    "createdAt": "2024-01-19T11:30:00Z"
+  },
+  {
+    "Id": 2,
+    "entityId": "1",
+    "entityType": "bug",
+    "content": "Can you provide more details about which browsers this affects? I'm unable to reproduce it in Chrome.",
+    "userId": "jane-smith",
+    "createdAt": "2024-01-19T14:15:00Z"
+  },
+  {
+    "Id": 3,
+    "entityId": "2",
+    "entityType": "bug",
+    "content": "This is a critical issue affecting our customers. I've escalated it to the development team lead.",
+    "userId": "mike-johnson",
+    "createdAt": "2024-01-20T09:45:00Z"
+  },
+  {
+    "Id": 4,
+    "entityId": "1",
+    "entityType": "testcase",
+    "content": "Test executed successfully. All validation messages are displaying correctly after the recent fix.",
+    "userId": "sarah-wilson",
+    "createdAt": "2024-01-18T16:20:00Z"
+  },
+  {
+    "Id": 5,
+    "entityId": "2",
+    "entityType": "testcase",
+    "content": "The test is failing consistently. The error message format has changed and needs to be updated in the expected results.",
+    "userId": "john-doe",
+    "createdAt": "2024-01-19T10:30:00Z"
+  },
+  {
+    "Id": 6,
+    "entityId": "1",
+    "entityType": "project",
+    "content": "Great progress on the e-commerce platform! The user authentication module is working perfectly.",
+    "userId": "jane-smith",
+    "createdAt": "2024-01-20T13:45:00Z"
+  },
+  {
+    "Id": 7,
+    "entityId": "3",
+    "entityType": "bug",
+    "content": "I've implemented a temporary fix by adding input validation. The proper solution will be deployed next week.",
+    "userId": "john-doe",
+    "createdAt": "2024-01-19T15:20:00Z"
+  },
+  {
+    "Id": 8,
+    "entityId": "4",
+    "entityType": "testcase",
+    "content": "Product search is working well after the algorithm improvements. All test cases are passing.",
+    "userId": "mike-johnson",
+    "createdAt": "2024-01-19T17:10:00Z"
+  }
+]

@@ -1,0 +1,161 @@
+[
+  {
+    "Id": 1,
+    "projectId": 1,
+    "moduleId": 1,
+    "title": "User Registration with Valid Email",
+    "description": "Verify that user can successfully register with a valid email address",
+    "steps": [
+      "Navigate to registration page",
+      "Enter valid email address",
+      "Enter strong password",
+      "Confirm password",
+      "Click Register button"
+    ],
+    "expectedResult": "User should be registered successfully and redirected to dashboard",
+    "status": "passed",
+    "priority": "high",
+    "assigneeId": "john-doe",
+    "createdAt": "2024-01-16T10:30:00Z",
+    "updatedAt": "2024-01-18T14:22:00Z"
+  },
+  {
+    "Id": 2,
+    "projectId": 1,
+    "moduleId": 1,
+    "title": "User Login with Invalid Credentials",
+    "description": "Verify that appropriate error message is shown for invalid login credentials",
+    "steps": [
+      "Navigate to login page",
+      "Enter invalid email",
+      "Enter incorrect password",
+      "Click Login button"
+    ],
+    "expectedResult": "Error message should display 'Invalid email or password'",
+    "status": "failed",
+    "priority": "medium",
+    "assigneeId": "jane-smith",
+    "createdAt": "2024-01-16T11:15:00Z",
+    "updatedAt": "2024-01-19T09:45:00Z"
+  },
+  {
+    "Id": 3,
+    "projectId": 1,
+    "moduleId": 2,
+    "title": "Product Search Functionality",
+    "description": "Test product search with various keywords and filters",
+    "steps": [
+      "Navigate to product catalog",
+      "Enter search keyword",
+      "Apply category filter",
+      "Apply price range filter",
+      "Verify search results"
+    ],
+    "expectedResult": "Products matching search criteria should be displayed",
+    "status": "pending",
+    "priority": "medium",
+    "assigneeId": "mike-johnson",
+    "createdAt": "2024-01-17T09:00:00Z",
+    "updatedAt": "2024-01-17T09:00:00Z"
+  },
+  {
+    "Id": 4,
+    "projectId": 1,
+    "moduleId": 3,
+    "title": "Add Product to Shopping Cart",
+    "description": "Verify that products can be added to shopping cart successfully",
+    "steps": [
+      "Browse product catalog",
+      "Select a product",
+      "Choose quantity",
+      "Click Add to Cart",
+      "Verify cart icon updates"
+    ],
+    "expectedResult": "Product should be added to cart and cart count should update",
+    "status": "passed",
+    "priority": "high",
+    "assigneeId": "sarah-wilson",
+    "createdAt": "2024-01-17T14:30:00Z",
+    "updatedAt": "2024-01-19T16:20:00Z"
+  },
+  {
+    "Id": 5,
+    "projectId": 2,
+    "moduleId": 4,
+    "title": "View Account Balance",
+    "description": "Test that user can view their account balance correctly",
+    "steps": [
+      "Login to mobile banking app",
+      "Navigate to account summary",
+      "Verify balance display",
+      "Check account details"
+    ],
+    "expectedResult": "Current account balance should be displayed accurately",
+    "status": "passed",
+    "priority": "high",
+    "assigneeId": "john-doe",
+    "createdAt": "2024-01-18T08:45:00Z",
+    "updatedAt": "2024-01-20T10:15:00Z"
+  },
+  {
+    "Id": 6,
+    "projectId": 2,
+    "moduleId": 5,
+    "title": "Money Transfer Between Accounts",
+    "description": "Test internal money transfer functionality",
+    "steps": [
+      "Login to banking app",
+      "Navigate to transfer section",
+      "Select source account",
+      "Select destination account",
+      "Enter transfer amount",
+      "Confirm transfer"
+    ],
+    "expectedResult": "Money should be transferred successfully with confirmation",
+    "status": "pending",
+    "priority": "high",
+    "assigneeId": "jane-smith",
+    "createdAt": "2024-01-18T13:20:00Z",
+    "updatedAt": "2024-01-18T13:20:00Z"
+  },
+  {
+    "Id": 7,
+    "projectId": 3,
+    "moduleId": 6,
+    "title": "Add New Customer Contact",
+    "description": "Verify that new customer contacts can be added to CRM system",
+    "steps": [
+      "Login to CRM system",
+      "Navigate to contacts section",
+      "Click Add New Contact",
+      "Fill in customer details",
+      "Save contact information"
+    ],
+    "expectedResult": "Customer contact should be saved and appear in contact list",
+    "status": "pending",
+    "priority": "medium",
+    "assigneeId": "mike-johnson",
+    "createdAt": "2024-01-19T11:00:00Z",
+    "updatedAt": "2024-01-19T11:00:00Z"
+  },
+  {
+    "Id": 8,
+    "projectId": 4,
+    "moduleId": 8,
+    "title": "Schedule Medical Appointment",
+    "description": "Test appointment booking functionality in healthcare portal",
+    "steps": [
+      "Login to patient portal",
+      "Navigate to appointments",
+      "Select doctor and specialty",
+      "Choose available time slot",
+      "Confirm appointment"
+    ],
+    "expectedResult": "Appointment should be scheduled and confirmation email sent",
+    "status": "passed",
+    "priority": "high",
+    "assigneeId": "sarah-wilson",
+    "createdAt": "2024-01-19T15:30:00Z",
+    "updatedAt": "2024-01-20T12:45:00Z"
+  }
+]
