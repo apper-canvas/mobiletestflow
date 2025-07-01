@@ -602,7 +602,9 @@ const EditTestCaseModal = ({ testCase, projects, onClose, onSuccess }) => {
             </Button>
           </div>
         </form>
-      </motion.div>
+</motion.div>
     </motion.div>
   )
 }
+
+export default TestCases
