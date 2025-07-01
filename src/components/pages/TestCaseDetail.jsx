@@ -7,7 +7,7 @@ import StatusBadge from '@/components/molecules/StatusBadge'
 import CommentSection from '@/components/molecules/CommentSection'
 import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
-import { getTestCaseById, updateTestCaseStatus } from '@/services/api/testCaseService'
+import { getTestCaseById, updateTestCase, updateTestCaseStatus } from '@/services/api/testCaseService'
 import { getProjectById } from '@/services/api/projectService'
 import { formatDistanceToNow } from 'date-fns'
 import { toast } from 'react-toastify'
@@ -18,7 +18,7 @@ const TestCaseDetail = () => {
   const [project, setProject] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-
+  const [showEditModal, setShowEditModal] = useState(false)
   const loadTestCaseData = async () => {
     try {
       setLoading(true)
@@ -85,9 +85,12 @@ const TestCaseDetail = () => {
             </h1>
             <p className="text-gray-600">{testCase.description}</p>
           </div>
-          
-          <div className="flex items-center space-x-3">
-            <Button variant="secondary" icon="Edit">
+<div className="flex items-center space-x-3">
+            <Button 
+              variant="secondary" 
+              icon="Edit"
+              onClick={() => setShowEditModal(true)}
+            >
               Edit
             </Button>
             <div className="relative group">
@@ -317,13 +320,156 @@ const TestCaseDetail = () => {
             </div>
           </div>
         </div>
-      </div>
+</div>
 
       {/* Comments Section */}
       <div className="mt-8">
         <CommentSection entityId={testCase.Id.toString()} entityType="testcase" />
       </div>
+
+      {/* Edit Test Case Modal */}
+      {showEditModal && testCase && (
+        <EditTestCaseModal
+          testCase={testCase}
+          onClose={() => setShowEditModal(false)}
+          onSuccess={(updatedTestCase) => {
+            setTestCase(updatedTestCase)
+            setShowEditModal(false)
+            toast.success('Test case updated successfully')
+          }}
+        />
+      )}
     </div>
+  )
+}
+
+const EditTestCaseModal = ({ testCase, onClose, onSuccess }) => {
+  const [formData, setFormData] = useState({
+    title: testCase.title || '',
+    description: testCase.description || '',
+    expectedResult: testCase.expectedResult || '',
+    priority: testCase.priority || 'medium'
+  })
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!formData.title.trim()) return
+
+    try {
+      setLoading(true)
+      const updatedTestCase = await updateTestCase(testCase.Id, {
+        ...formData,
+        updatedAt: new Date().toISOString()
+      })
+      onSuccess(updatedTestCase)
+    } catch (err) {
+      toast.error('Failed to update test case')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="bg-white rounded-xl shadow-large max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">Edit Test Case</h3>
+          <button
+            onClick={onClose}
+            className="p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+          >
+            <ApperIcon name="X" size={18} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Priority
+            </label>
+            <select
+              value={formData.priority}
+              onChange={(e) => setFormData(prev => ({ ...prev, priority: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Test Case Title
+            </label>
+            <input
+              type="text"
+              value={formData.title}
+              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="Enter test case title"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Description
+            </label>
+            <textarea
+              value={formData.description}
+              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+              rows={3}
+              placeholder="Describe the test case"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Expected Result
+            </label>
+            <textarea
+              value={formData.expectedResult}
+              onChange={(e) => setFormData(prev => ({ ...prev, expectedResult: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+              rows={3}
+              placeholder="Describe the expected outcome"
+            />
+          </div>
+
+          <div className="flex justify-end space-x-3 pt-4">
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              loading={loading}
+              disabled={!formData.title.trim()}
+            >
+              Update Test Case
+            </Button>
+          </div>
+        </form>
+      </motion.div>
+    </motion.div>
   )
 }
 
