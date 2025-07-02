@@ -33,7 +33,7 @@ const Projects = () => {
     loadProjects()
   }, [])
 
-  const handleDeleteProject = async (id) => {
+const handleDeleteProject = async (id) => {
     if (!confirm('Are you sure you want to delete this project?')) return
     
     try {

@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const loadDashboardStats = async () => {
+const loadDashboardStats = async () => {
     try {
       setLoading(true)
       setError('')

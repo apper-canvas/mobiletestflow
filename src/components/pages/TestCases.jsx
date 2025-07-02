@@ -56,7 +56,7 @@ const [showCreateModal, setShowCreateModal] = useState(false)
     setFilters({ status: '', priority: '', project: '' })
   }
 
-  const handleStatusUpdate = async (id, newStatus) => {
+const handleStatusUpdate = async (id, newStatus) => {
     try {
       await updateTestCaseStatus(id, newStatus)
       setTestCases(prev => 
@@ -68,7 +68,7 @@ const [showCreateModal, setShowCreateModal] = useState(false)
     } catch (err) {
       toast.error('Failed to update status')
     }
-}
+  }
 
   const handleEditTestCase = (testCase) => {
     setEditingTestCase(testCase)

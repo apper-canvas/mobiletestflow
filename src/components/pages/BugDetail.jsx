@@ -41,7 +41,7 @@ const BugDetail = () => {
     loadBugData()
   }, [id])
 
-  const handleStatusUpdate = async (newStatus) => {
+const handleStatusUpdate = async (newStatus) => {
     try {
       await updateBugStatus(bug.Id, newStatus)
       setBug(prev => ({ ...prev, status: newStatus }))

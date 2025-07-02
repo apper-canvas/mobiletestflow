@@ -21,7 +21,7 @@ const ProjectDetail = () => {
   const [error, setError] = useState('')
   const [activeTab, setActiveTab] = useState('overview')
 
-  const loadProjectData = async () => {
+const loadProjectData = async () => {
     try {
       setLoading(true)
       setError('')
@@ -32,8 +32,8 @@ const ProjectDetail = () => {
       ])
       
       setProject(projectData)
-      setTestCases(testCasesData.filter(tc => tc.projectId === parseInt(id)))
-      setBugs(bugsData.filter(bug => bug.projectId === parseInt(id)))
+      setTestCases(testCasesData.filter(tc => tc.project_id?.Id === parseInt(id)))
+      setBugs(bugsData.filter(bug => bug.project_id?.Id === parseInt(id)))
     } catch (err) {
       setError('Failed to load project details')
     } finally {

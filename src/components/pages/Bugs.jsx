@@ -54,7 +54,7 @@ const Bugs = () => {
     setFilters({ status: '', priority: '', project: '' })
   }
 
-  const handleStatusUpdate = async (id, newStatus) => {
+const handleStatusUpdate = async (id, newStatus) => {
     try {
       await updateBugStatus(id, newStatus)
       setBugs(prev => 

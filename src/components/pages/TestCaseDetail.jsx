@@ -41,7 +41,7 @@ const TestCaseDetail = () => {
     loadTestCaseData()
   }, [id])
 
-  const handleStatusUpdate = async (newStatus) => {
+const handleStatusUpdate = async (newStatus) => {
     try {
       await updateTestCaseStatus(testCase.Id, newStatus)
       setTestCase(prev => ({ ...prev, status: newStatus }))
